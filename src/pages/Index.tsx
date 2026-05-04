@@ -14,43 +14,43 @@ const NAV_LINKS = [
 const FEATURES = [
   {
     icon: "Bell",
-    title: "Уведомления об оплате",
-    desc: "Бот напоминает арендаторам о предстоящих платежах за 7, 3 и 1 день до срока. Никаких звонков — всё автоматически.",
+    title: "Напоминания об оплате",
+    desc: "Бот сам напоминает арендатору об оплате за 7, 3 и 1 день до срока — посуточно или по месяцам. Вы не тратите время на звонки.",
     color: "bg-green-50 border-green-200",
     iconColor: "text-green-600",
   },
   {
     icon: "AlertTriangle",
-    title: "Контроль задолженностей",
-    desc: "Мгновенные уведомления при просрочке. Бот сам отправляет напоминания и ведёт историю переписки.",
+    title: "Контроль просрочек",
+    desc: "При задержке оплаты бот мгновенно уведомляет вас и автоматически пишет арендатору. Долги не копятся.",
     color: "bg-red-50 border-red-200",
     iconColor: "text-red-500",
   },
   {
-    icon: "Calendar",
-    title: "Важные даты",
-    desc: "Окончание договора, плановый ремонт, страховка — бот помнит всё и предупреждает вовремя.",
+    icon: "Car",
+    title: "Учёт каждого авто",
+    desc: "Бот ведёт список ваших автомобилей: кто арендует, до какого числа, по какой схеме — посуточно, помесячно или под выкуп.",
     color: "bg-blue-50 border-blue-200",
     iconColor: "text-blue-600",
   },
   {
     icon: "BarChart2",
-    title: "Аналитика в реальном времени",
-    desc: "Сводка по всем объектам одним сообщением. Кто заплатил, кто должен, сколько поступило за месяц.",
+    title: "Финансовая сводка",
+    desc: "Одним сообщением получайте итог по всему автопарку: кто заплатил, кто должен, сколько поступило за период.",
     color: "bg-purple-50 border-purple-200",
     iconColor: "text-purple-600",
   },
   {
-    icon: "MessageSquare",
-    title: "Общение с арендаторами",
-    desc: "Единый чат для всех договорённостей. Все сообщения сохраняются и доступны в любой момент.",
+    icon: "Calendar",
+    title: "Важные даты по авто",
+    desc: "ОСАГО, каско, ТО, окончание договора — бот предупредит заранее, чтобы ничего не пропустить.",
     color: "bg-orange-50 border-orange-200",
     iconColor: "text-orange-500",
   },
   {
-    icon: "Shield",
-    title: "Безопасность данных",
-    desc: "Ваши данные шифруются и хранятся надёжно. Доступ только у вас и авторизованных лиц.",
+    icon: "FileText",
+    title: "Договоры под выкуп",
+    desc: "Отдельный учёт для авто под выкуп: сколько выплачено, сколько осталось, когда следующий платёж.",
     color: "bg-green-50 border-green-200",
     iconColor: "text-green-600",
   },
@@ -58,11 +58,11 @@ const FEATURES = [
 
 const EXAMPLES = [
   {
-    tag: "Уведомление об оплате",
+    tag: "Напоминание об оплате",
     tagColor: "text-green-700",
     tagBg: "bg-green-50 border-green-200",
     title: "За 3 дня до срока",
-    message: "💳 Привет, Александр! Напоминаю, что 7 мая нужно оплатить аренду квартиры на ул. Ленина, 42 — 35 000 ₽. Реквизиты: Сбер **** 1234.",
+    message: "💳 Привет, Артём! Напоминаю: 7 мая срок оплаты аренды Toyota Camry (гос. номер А123БВ) — 15 000 ₽. Реквизиты: Сбер **** 5678. Спасибо!",
     time: "04 мая, 10:00",
     dot: "bg-green-500",
   },
@@ -70,18 +70,18 @@ const EXAMPLES = [
     tag: "Просрочка",
     tagColor: "text-red-700",
     tagBg: "bg-red-50 border-red-200",
-    title: "День просрочки",
-    message: "⚠️ Оплата по договору №А-2024-15 просрочена на 1 день. Сумма задолженности: 28 000 ₽. Пожалуйста, погасите долг сегодня.",
-    time: "01 мая, 09:00",
+    title: "Оплата не поступила",
+    message: "⚠️ Дмитрий, оплата за Kia Rio (А456СД) просрочена на 2 дня. Сумма: 9 000 ₽. Пожалуйста, переведите сегодня, иначе договор будет приостановлен.",
+    time: "03 мая, 09:00",
     dot: "bg-red-500",
   },
   {
-    tag: "Важная дата",
+    tag: "Срок договора / ОСАГО",
     tagColor: "text-blue-700",
     tagBg: "bg-blue-50 border-blue-200",
-    title: "Договор истекает",
-    message: "📋 Через 30 дней истекает договор аренды с Мариной К. (ул. Садовая, 8). Пора обсудить продление или поиск нового арендатора.",
-    time: "03 мая, 12:00",
+    title: "Важная дата по авто",
+    message: "📋 Через 10 дней истекает ОСАГО на Hyundai Solaris (В789ЕЖ), переданный Сергею К. под выкуп. Не забудьте продлить страховку вовремя.",
+    time: "02 мая, 12:00",
     dot: "bg-blue-500",
   },
 ];
@@ -91,12 +91,12 @@ const PLANS = [
     name: "Старт",
     price: "990",
     period: "/ мес",
-    desc: "Для владельца 1–3 объектов",
+    desc: "Для владельца 1–5 автомобилей",
     features: [
-      "До 3 объектов",
-      "Уведомления об оплате",
-      "Контроль задолженностей",
-      "Telegram-бот",
+      "До 5 автомобилей",
+      "Напоминания об оплате",
+      "Контроль просрочек",
+      "Telegram + MAX боты",
       "Поддержка по email",
     ],
     cta: "Начать бесплатно",
@@ -106,14 +106,14 @@ const PLANS = [
     name: "Бизнес",
     price: "2 490",
     period: "/ мес",
-    desc: "Для портфеля 4–20 объектов",
+    desc: "Для автопарка 6–30 машин",
     features: [
-      "До 20 объектов",
+      "До 30 автомобилей",
       "Всё из тарифа Старт",
-      "Аналитика и отчёты",
-      "Напоминания важных дат",
-      "Приоритетная поддержка",
-      "Экспорт в Excel",
+      "Учёт договоров под выкуп",
+      "Напоминания ОСАГО, ТО, каско",
+      "Финансовая аналитика",
+      "Экспорт отчётов",
     ],
     cta: "Выбрать тариф",
     accent: true,
@@ -122,11 +122,11 @@ const PLANS = [
     name: "Про",
     price: "5 990",
     period: "/ мес",
-    desc: "Для агентств и крупных портфелей",
+    desc: "Для крупных автопарков и агентств",
     features: [
-      "Неограниченные объекты",
+      "Неограниченный автопарк",
       "Всё из тарифа Бизнес",
-      "API интеграции",
+      "Посуточный и помесячный учёт",
       "Кастомные уведомления",
       "Личный менеджер",
       "White-label решение",
@@ -137,10 +137,10 @@ const PLANS = [
 ];
 
 const STATS = [
-  { value: "1 200+", label: "Объектов под управлением" },
-  { value: "98%", label: "Оплат вовремя" },
-  { value: "3 мин", label: "Среднее время настройки" },
-  { value: "24/7", label: "Работа бота" },
+  { value: "3 500+", label: "Автомобилей под управлением" },
+  { value: "97%", label: "Оплат поступает вовремя" },
+  { value: "5 мин", label: "Настройка автопарка" },
+  { value: "24/7", label: "Бот работает без выходных" },
 ];
 
 const TgIcon = () => (
@@ -203,18 +203,18 @@ export default function Index() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 animate-fade-up hero-badge">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot" />
-              <span className="text-xs font-semibold tracking-widest text-green-700 uppercase">RentCarBot — бот для управления арендой</span>
+              <span className="text-xs font-semibold tracking-widest text-green-700 uppercase">RentCarBot — бот для владельцев авто</span>
             </div>
 
             <h1 className="font-display text-5xl md:text-6xl xl:text-7xl font-bold leading-none mb-6 animate-fade-up-delay-1 text-gray-900">
               УМНОЕ<br />
               <span className="brand-text">УПРАВЛЕНИЕ</span><br />
-              АРЕНДОЙ
+              АВТОПАРКОМ
             </h1>
 
             <p className="text-gray-500 text-lg leading-relaxed mb-8 animate-fade-up-delay-2 max-w-lg">
-              Автоматические уведомления об оплатах, задолженностях и важных датах.
-              Бот работает за вас — 24/7, без выходных.
+              Для владельцев авто, которые сдают машины посуточно, помесячно или под выкуп.
+              Бот сам контролирует оплаты, напоминает об ОСАГО и ведёт учёт по каждому авто — без вашего участия.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
@@ -254,7 +254,7 @@ export default function Index() {
                 </div>
                 <span className="text-xs font-semibold text-green-700">Оплата получена</span>
               </div>
-              <p className="text-xs text-gray-500">Квартира на Садовой — 35 000 ₽</p>
+              <p className="text-xs text-gray-500">Toyota Camry А123БВ — 15 000 ₽</p>
             </div>
 
             <div className="absolute -right-12 bottom-1/3 bg-white rounded-2xl p-3.5 shadow-xl border border-gray-100 notification-card" style={{ minWidth: 195 }}>
@@ -264,7 +264,7 @@ export default function Index() {
                 </div>
                 <span className="text-xs font-semibold text-red-600">Просрочка 3 дня</span>
               </div>
-              <p className="text-xs text-gray-500">Ленина 42 — 28 000 ₽</p>
+              <p className="text-xs text-gray-500">Kia Rio А456СД — 9 000 ₽</p>
             </div>
           </div>
         </div>
