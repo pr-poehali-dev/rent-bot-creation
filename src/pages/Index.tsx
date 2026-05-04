@@ -143,10 +143,8 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4"
         style={{ background: "rgba(5,13,26,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(57,255,126,0.08)" }}>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--neon-green), #00d4ff)" }}>
-            <Icon name="Home" size={16} className="text-gray-900" />
-          </div>
-          <span className="font-display text-lg font-bold tracking-wide">РЕНТ<span className="neon-text">БОТ</span></span>
+          <img src="https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/deb89c32-44f6-4e0a-be4a-951bc1964dc0.jpg" alt="RentCarBot logo" className="w-9 h-9 rounded-lg object-cover" style={{ border: "1px solid rgba(57,255,126,0.3)" }} />
+          <span className="font-display text-lg font-bold tracking-wide">RentCar<span className="neon-text">Bot</span></span>
         </div>
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
@@ -175,7 +173,7 @@ export default function Index() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 animate-fade-up"
               style={{ background: "rgba(57,255,126,0.1)", border: "1px solid rgba(57,255,126,0.2)" }}>
               <div className="w-2 h-2 rounded-full animate-pulse-neon" style={{ background: "var(--neon-green)" }} />
-              <span className="text-xs font-semibold tracking-widest text-emerald-400 uppercase">Бот для управления арендой</span>
+              <span className="text-xs font-semibold tracking-widest text-emerald-400 uppercase">RentCarBot — бот для управления арендой</span>
             </div>
 
             <h1 className="font-display text-5xl md:text-6xl xl:text-7xl font-bold leading-none mb-6 animate-fade-up-delay-1">
@@ -485,12 +483,10 @@ export default function Index() {
       <footer className="py-8 px-6" style={{ borderTop: "1px solid rgba(57,255,126,0.08)" }}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--neon-green), #00d4ff)" }}>
-              <Icon name="Home" size={14} className="text-gray-900" />
-            </div>
-            <span className="font-display font-bold tracking-wide">РЕНТ<span className="neon-text">БОТ</span></span>
+            <img src="https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/deb89c32-44f6-4e0a-be4a-951bc1964dc0.jpg" alt="RentCarBot logo" className="w-7 h-7 rounded-lg object-cover" style={{ border: "1px solid rgba(57,255,126,0.3)" }} />
+            <span className="font-display font-bold tracking-wide">RentCar<span className="neon-text">Bot</span></span>
           </div>
-          <p className="text-gray-600 text-sm">© 2026 РентБот. Все права защищены.</p>
+          <p className="text-gray-600 text-sm">© 2026 RentCarBot. Все права защищены.</p>
           <div className="flex gap-6">
             {NAV_LINKS.map((l) => (
               <a key={l.href} href={l.href} className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
