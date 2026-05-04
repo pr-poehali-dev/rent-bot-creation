@@ -422,54 +422,62 @@ export default function Index() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Telegram */}
               <a href="https://t.me/rentbot_support" target="_blank" rel="noopener noreferrer"
-                className="light-card rounded-xl p-5 flex items-center gap-4 block">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-blue-50 border border-blue-100">
-                  <TgIcon />
+                className="light-card rounded-2xl p-5 flex items-center gap-4 group"
+                style={{ display: "flex" }}>
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "linear-gradient(135deg, #229ED9, #1a7cbf)" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  </svg>
                 </div>
-                <div>
-                  <div className="text-xs text-gray-400 font-medium">Telegram-бот</div>
-                  <div className="text-gray-900 font-semibold mt-0.5">@rentbot_support</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs text-gray-500 font-medium mb-0.5">Telegram-бот</div>
+                  <div className="text-white font-semibold">@rentbot_support</div>
                 </div>
-                <Icon name="ArrowRight" size={16} className="text-gray-400 ml-auto" />
+                <Icon name="ArrowUpRight" size={18} className="text-gray-600 group-hover:text-emerald-400 transition-colors flex-shrink-0" />
               </a>
 
               {/* MAX */}
               <a href="https://max.ru/rentbot" target="_blank" rel="noopener noreferrer"
-                className="light-card rounded-xl p-5 flex items-center gap-4 block">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-fuchsia-50 border border-fuchsia-100">
-                  <MaxIcon />
+                className="light-card rounded-2xl p-5 flex items-center gap-4 group"
+                style={{ display: "flex" }}>
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "linear-gradient(135deg, #e8445a, #a21caf)" }}>
+                  <svg width="22" height="22" viewBox="0 0 36 36" fill="white">
+                    <path d="M18 2C9.163 2 2 9.163 2 18s7.163 16 16 16 16-7.163 16-16S26.837 2 18 2zm6 22h-3.5v-7.5H15.5V24H12V10h3.5v7h5V10H24v14z"/>
+                  </svg>
                 </div>
-                <div>
-                  <div className="text-xs text-gray-400 font-medium">
-                    MAX-бот <span className="text-fuchsia-500">(российский мессенджер)</span>
-                  </div>
-                  <div className="text-gray-900 font-semibold mt-0.5">@rentbot_max</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs text-gray-500 font-medium mb-0.5">MAX-бот <span className="text-fuchsia-400">· RU мессенджер</span></div>
+                  <div className="text-white font-semibold">@rentbot_max</div>
                 </div>
-                <Icon name="ArrowRight" size={16} className="text-gray-400 ml-auto" />
+                <Icon name="ArrowUpRight" size={18} className="text-gray-600 group-hover:text-emerald-400 transition-colors flex-shrink-0" />
               </a>
 
               {/* Phone */}
-              <div className="light-card rounded-xl p-5 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-green-50 border border-green-100">
-                  <Icon name="Phone" fallback="Circle" size={20} className="text-green-600" />
+              <div className="light-card rounded-2xl p-5 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "linear-gradient(135deg, #059669, #047857)" }}>
+                  <Icon name="Phone" fallback="Circle" size={20} className="text-white" />
                 </div>
-                <div>
-                  <div className="text-xs text-gray-400 font-medium">Телефон</div>
-                  <div className="text-gray-900 font-semibold mt-0.5">+7 (800) 123-45-67</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs text-gray-500 font-medium mb-0.5">Телефон</div>
+                  <div className="text-white font-semibold">+7 (800) 123-45-67</div>
                 </div>
               </div>
 
               {/* Email */}
-              <div className="light-card rounded-xl p-5 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-purple-50 border border-purple-100">
-                  <Icon name="Mail" fallback="Circle" size={20} className="text-purple-600" />
+              <div className="light-card rounded-2xl p-5 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "linear-gradient(135deg, #7c3aed, #5b21b6)" }}>
+                  <Icon name="Mail" fallback="Circle" size={20} className="text-white" />
                 </div>
-                <div>
-                  <div className="text-xs text-gray-400 font-medium">Email</div>
-                  <div className="text-gray-900 font-semibold mt-0.5">hello@rentbot.ru</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs text-gray-500 font-medium mb-0.5">Email</div>
+                  <div className="text-white font-semibold">hello@rentbot.ru</div>
                 </div>
               </div>
             </div>
