@@ -4,41 +4,45 @@
 
 @layer base {
   :root {
-    --background: 222 47% 5%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 100%;
+    --foreground: 220 25% 10%;
 
-    --card: 222 40% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
 
-    --popover: 222 40% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
 
-    --primary: 142 76% 50%;
-    --primary-foreground: 222 47% 5%;
+    --primary: 142 70% 38%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 222 47% 5%;
+    --secondary: 210 14% 95%;
+    --secondary-foreground: 220 25% 10%;
 
-    --muted: 222 30% 15%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 210 14% 95%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 142 76% 50%;
-    --accent-foreground: 222 47% 5%;
+    --accent: 142 70% 38%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 15%;
-    --ring: 142 76% 50%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 142 70% 38%;
 
     --radius: 0.75rem;
 
     /* Brand colors */
-    --neon-green: #39ff7e;
-    --neon-blue: #4f8eff;
-    --dark-bg: #050d1a;
-    --card-bg: #0a1628;
+    --brand-green: #16a34a;
+    --brand-green-light: #dcfce7;
+    --brand-green-mid: #22c55e;
+    --brand-blue: #2563eb;
+    --brand-blue-light: #dbeafe;
+    --light-bg: #ffffff;
+    --section-bg: #f8fafc;
+    --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
   }
 }
 
@@ -52,20 +56,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-gray-900;
     font-family: "Golos Text", sans-serif;
-    background-color: var(--dark-bg);
-    background-image:
-      radial-gradient(
-        ellipse at 20% 20%,
-        rgba(57, 255, 126, 0.06) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        ellipse at 80% 80%,
-        rgba(79, 142, 255, 0.06) 0%,
-        transparent 50%
-      );
   }
 }
 
@@ -74,50 +66,50 @@
     font-family: "Oswald", sans-serif;
   }
 
-  .neon-text {
-    color: var(--neon-green);
-    text-shadow:
-      0 0 20px rgba(57, 255, 126, 0.5),
-      0 0 40px rgba(57, 255, 126, 0.2);
+  .brand-text {
+    color: var(--brand-green);
   }
 
-  .neon-border {
-    border-color: var(--neon-green);
-    box-shadow:
-      0 0 15px rgba(57, 255, 126, 0.3),
-      inset 0 0 15px rgba(57, 255, 126, 0.05);
-  }
-
-  .neon-btn {
-    background: linear-gradient(135deg, var(--neon-green), #00d4ff);
-    color: #050d1a;
+  .brand-btn {
+    background: linear-gradient(135deg, var(--brand-green), #15803d);
+    color: #ffffff;
     font-weight: 700;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 30px rgba(57, 255, 126, 0.35);
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.3);
   }
 
-  .neon-btn:hover {
+  .brand-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 40px rgba(57, 255, 126, 0.55);
+    box-shadow: 0 8px 30px rgba(22, 163, 74, 0.45);
   }
 
-  .glass-card {
-    background: rgba(10, 22, 40, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(57, 255, 126, 0.12);
-  }
-
-  .glass-card:hover {
-    border-color: rgba(57, 255, 126, 0.3);
-    box-shadow: 0 0 30px rgba(57, 255, 126, 0.1);
+  .light-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--card-shadow);
     transition: all 0.3s ease;
+  }
+
+  .light-card:hover {
+    border-color: #86efac;
+    box-shadow: 0 8px 30px rgba(22, 163, 74, 0.1);
+  }
+
+  .hero-badge {
+    background: var(--brand-green-light);
+    border: 1px solid #86efac;
+    color: var(--brand-green);
   }
 
   .grid-bg {
     background-image:
-      linear-gradient(rgba(57, 255, 126, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57, 255, 126, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(22, 163, 74, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22, 163, 74, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
+  }
+
+  .stat-accent {
+    color: var(--brand-green);
   }
 }
 
@@ -127,17 +119,19 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-10px);
   }
 }
 
-@keyframes pulse-neon {
+@keyframes pulse-dot {
   0%,
   100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
+    transform: scale(0.85);
   }
 }
 
@@ -163,24 +157,12 @@
   }
 }
 
-@keyframes counter-glow {
-  0%,
-  100% {
-    text-shadow: 0 0 20px rgba(57, 255, 126, 0.5);
-  }
-  50% {
-    text-shadow:
-      0 0 40px rgba(57, 255, 126, 0.9),
-      0 0 80px rgba(57, 255, 126, 0.4);
-  }
-}
-
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
 
-.animate-pulse-neon {
-  animation: pulse-neon 2s ease-in-out infinite;
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
 }
 
 .animate-fade-up {
@@ -207,10 +189,6 @@
   opacity: 0;
 }
 
-.animate-counter-glow {
-  animation: counter-glow 2.5s ease-in-out infinite;
-}
-
 .notification-card {
   animation: slide-in-left 0.5s ease-out forwards;
 }
@@ -219,6 +197,7 @@
   animation-delay: 0.2s;
   opacity: 0;
 }
+
 .notification-card:nth-child(3) {
   animation-delay: 0.4s;
   opacity: 0;
