@@ -59,30 +59,39 @@ const FEATURES = [
 const EXAMPLES = [
   {
     tag: "Напоминание об оплате",
-    tagColor: "text-green-700",
-    tagBg: "bg-green-50 border-green-200",
+    tagColor: "text-emerald-400",
+    tagBg: "bg-emerald-400/10 border-emerald-400/20",
     title: "За 3 дня до срока",
-    message: "💳 Привет, Артём! Напоминаю: 7 мая срок оплаты аренды Toyota Camry (гос. номер А123БВ) — 15 000 ₽. Реквизиты: Сбер **** 5678. Спасибо!",
+    message: "💳 Привет, Артём! Напоминаю: 7 мая срок оплаты аренды Toyota Camry (А123БВ) — 15 000 ₽. Реквизиты: Сбер **** 5678. Спасибо!",
     time: "04 мая, 10:00",
-    dot: "bg-green-500",
+    dot: "bg-emerald-500",
   },
   {
     tag: "Просрочка",
-    tagColor: "text-red-700",
-    tagBg: "bg-red-50 border-red-200",
+    tagColor: "text-red-400",
+    tagBg: "bg-red-400/10 border-red-400/20",
     title: "Оплата не поступила",
     message: "⚠️ Дмитрий, оплата за Kia Rio (А456СД) просрочена на 2 дня. Сумма: 9 000 ₽. Пожалуйста, переведите сегодня, иначе договор будет приостановлен.",
     time: "03 мая, 09:00",
     dot: "bg-red-500",
   },
   {
-    tag: "Срок договора / ОСАГО",
-    tagColor: "text-blue-700",
-    tagBg: "bg-blue-50 border-blue-200",
+    tag: "ОСАГО / договор",
+    tagColor: "text-blue-400",
+    tagBg: "bg-blue-400/10 border-blue-400/20",
     title: "Важная дата по авто",
     message: "📋 Через 10 дней истекает ОСАГО на Hyundai Solaris (В789ЕЖ), переданный Сергею К. под выкуп. Не забудьте продлить страховку вовремя.",
     time: "02 мая, 12:00",
     dot: "bg-blue-500",
+  },
+  {
+    tag: "Штрафы ГИБДД",
+    tagColor: "text-orange-400",
+    tagBg: "bg-orange-400/10 border-orange-400/20",
+    title: "Новый штраф на авто",
+    message: "🚔 Максим, на Toyota Camry (А123БВ) зафиксирован штраф ГИБДД — 3 000 ₽. Оплатите до 02 июня со скидкой 50% (1 500 ₽). Ссылка для оплаты: gibdd.ru/",
+    time: "03 мая, 14:22",
+    dot: "bg-orange-500",
   },
 ];
 
@@ -166,20 +175,21 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen text-white" style={{ backgroundColor: "var(--dark-bg)" }}>
 
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 px-6 py-3 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-3 flex items-center justify-between"
+        style={{ background: "rgba(5,13,26,0.88)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(57,255,126,0.08)" }}>
         <div className="flex items-center gap-2.5">
-          <img src={LOGO_IMAGE} alt="RentCarBot logo" className="w-9 h-9 rounded-xl object-cover border border-green-200" />
-          <span className="font-display text-xl font-bold tracking-wide text-gray-900">
+          <img src={LOGO_IMAGE} alt="RentCarBot logo" className="w-9 h-9 rounded-xl object-cover" style={{ border: "1px solid rgba(57,255,126,0.3)" }} />
+          <span className="font-display text-xl font-bold tracking-wide text-white">
             RentCar<span className="brand-text">Bot</span>
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href}
-              className="text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 font-medium">
+              className="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">
               {l.label}
             </a>
           ))}
@@ -190,29 +200,28 @@ export default function Index() {
       </nav>
 
       {/* HERO */}
-      <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        {/* Subtle background */}
+      <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden grid-bg">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl"
-            style={{ background: "radial-gradient(circle, #dcfce7, transparent)" }} />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-20 blur-3xl"
-            style={{ background: "radial-gradient(circle, #dbeafe, transparent)" }} />
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl"
+            style={{ background: "radial-gradient(circle, var(--neon-green), transparent)" }} />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-8 blur-3xl"
+            style={{ background: "radial-gradient(circle, var(--neon-blue), transparent)" }} />
         </div>
 
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 animate-fade-up hero-badge">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot" />
-              <span className="text-xs font-semibold tracking-widest text-green-700 uppercase">RentCarBot — бот для владельцев авто</span>
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot" />
+              <span className="text-xs font-semibold tracking-widest text-emerald-400 uppercase">RentCarBot — бот для владельцев авто</span>
             </div>
 
-            <h1 className="font-display text-5xl md:text-6xl xl:text-7xl font-bold leading-none mb-6 animate-fade-up-delay-1 text-gray-900">
+            <h1 className="font-display text-5xl md:text-6xl xl:text-7xl font-bold leading-none mb-6 animate-fade-up-delay-1 text-white">
               УМНОЕ<br />
-              <span className="brand-text">УПРАВЛЕНИЕ</span><br />
+              <span className="neon-text">УПРАВЛЕНИЕ</span><br />
               АВТОПАРКОМ
             </h1>
 
-            <p className="text-gray-500 text-lg leading-relaxed mb-8 animate-fade-up-delay-2 max-w-lg">
+            <p className="text-gray-400 text-lg leading-relaxed mb-8 animate-fade-up-delay-2 max-w-lg">
               Для владельцев авто, которые сдают машины посуточно, помесячно или под выкуп.
               Бот сам контролирует оплаты, напоминает об ОСАГО и ведёт учёт по каждому авто — без вашего участия.
             </p>
@@ -242,53 +251,54 @@ export default function Index() {
           </div>
 
           <div className="relative animate-float hidden lg:block">
-            <div className="relative rounded-2xl overflow-hidden border-2 border-green-100 shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden border-2 shadow-2xl" style={{ borderColor: "rgba(57,255,126,0.25)", boxShadow: "0 0 60px rgba(57,255,126,0.1)" }}>
               <img src={HERO_IMAGE} alt="RentCarBot интерфейс" className="w-full h-auto" />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(255,255,255,0.15), transparent)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,13,26,0.4), transparent)" }} />
             </div>
 
-            <div className="absolute -left-16 top-1/4 bg-white rounded-2xl p-3.5 shadow-xl border border-gray-100 notification-card" style={{ minWidth: 210 }}>
+            <div className="absolute -left-16 top-1/4 rounded-2xl p-3.5 notification-card" style={{ minWidth: 210, background: "var(--dark-card)", border: "1px solid rgba(57,255,126,0.15)", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}>
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-6 h-6 rounded-lg bg-green-100 flex items-center justify-center">
-                  <Icon name="Bell" size={13} className="text-green-600" />
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: "rgba(52,211,153,0.15)" }}>
+                  <Icon name="Bell" size={13} className="text-emerald-400" />
                 </div>
-                <span className="text-xs font-semibold text-green-700">Оплата получена</span>
+                <span className="text-xs font-semibold text-emerald-400">Оплата получена</span>
               </div>
-              <p className="text-xs text-gray-500">Toyota Camry А123БВ — 15 000 ₽</p>
+              <p className="text-xs text-gray-400">Toyota Camry А123БВ — 15 000 ₽</p>
             </div>
 
-            <div className="absolute -right-12 bottom-1/3 bg-white rounded-2xl p-3.5 shadow-xl border border-gray-100 notification-card" style={{ minWidth: 195 }}>
+            <div className="absolute -right-12 bottom-1/3 rounded-2xl p-3.5 notification-card" style={{ minWidth: 195, background: "var(--dark-card)", border: "1px solid rgba(248,113,113,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}>
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-6 h-6 rounded-lg bg-red-100 flex items-center justify-center">
-                  <Icon name="AlertTriangle" size={13} className="text-red-500" />
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: "rgba(248,113,113,0.15)" }}>
+                  <Icon name="AlertTriangle" size={13} className="text-red-400" />
                 </div>
-                <span className="text-xs font-semibold text-red-600">Просрочка 3 дня</span>
+                <span className="text-xs font-semibold text-red-400">Просрочка 3 дня</span>
               </div>
-              <p className="text-xs text-gray-500">Kia Rio А456СД — 9 000 ₽</p>
+              <p className="text-xs text-gray-400">Kia Rio А456СД — 9 000 ₽</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* FEATURES */}
-      <section className="py-24 px-6 bg-gray-50">
+      <section className="py-24 px-6" style={{ backgroundColor: "var(--dark-card2)" }}>
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-green-600 uppercase block mb-3">Возможности</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900">
-              ВСЁ ПОД <span className="brand-text">КОНТРОЛЕМ</span>
+            <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase block mb-3">Возможности</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+              ВСЁ ПОД <span className="neon-text">КОНТРОЛЕМ</span>
             </h2>
-            <p className="text-gray-500 mt-4 max-w-xl mx-auto">Бот берёт на себя рутину, чтобы вы занимались главным</p>
+            <p className="text-gray-400 mt-4 max-w-xl mx-auto">Бот берёт на себя рутину, чтобы вы занимались главным</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {FEATURES.map((f, i) => (
               <div key={i} className="light-card rounded-2xl p-6 group cursor-default">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 border transition-transform duration-300 group-hover:scale-110 ${f.color}`}>
-                  <Icon name={f.icon} fallback="Circle" size={22} className={f.iconColor} />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
+                  style={{ background: "linear-gradient(135deg, rgba(57,255,126,0.12), rgba(79,142,255,0.12))", border: "1px solid rgba(57,255,126,0.18)" }}>
+                  <Icon name={f.icon} fallback="Circle" size={22} className="text-emerald-400" />
                 </div>
-                <h3 className="font-display text-lg font-bold mb-2 text-gray-900">{f.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+                <h3 className="font-display text-lg font-bold mb-2 text-white">{f.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -296,14 +306,14 @@ export default function Index() {
       </section>
 
       {/* EXAMPLES */}
-      <section id="examples" className="py-24 px-6 bg-white">
+      <section id="examples" className="py-24 px-6 grid-bg" style={{ backgroundColor: "var(--dark-bg)" }}>
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-green-600 uppercase block mb-3">Примеры</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900">
-              КАК ЭТО <span className="brand-text">ВЫГЛЯДИТ</span>
+            <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase block mb-3">Примеры</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+              КАК ЭТО <span className="neon-text">ВЫГЛЯДИТ</span>
             </h2>
-            <p className="text-gray-500 mt-4 max-w-xl mx-auto">Реальные сообщения, которые получают ваши арендаторы</p>
+            <p className="text-gray-400 mt-4 max-w-xl mx-auto">Реальные сообщения, которые получают ваши арендаторы</p>
           </div>
 
           <div className="flex gap-3 justify-center mb-10 flex-wrap">
@@ -312,15 +322,16 @@ export default function Index() {
                 onClick={() => setActiveTab(i)}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${
                   i === activeTab
-                    ? "bg-green-600 text-white border-green-600 shadow-md"
-                    : "bg-white text-gray-500 border-gray-200 hover:border-green-300 hover:text-green-700"
-                }`}>
+                    ? "text-emerald-400 border-emerald-400/60"
+                    : "text-gray-400 border-white/10 hover:border-white/25 hover:text-gray-200"
+                }`}
+                style={i === activeTab ? { background: "rgba(57,255,126,0.1)", boxShadow: "0 0 12px rgba(57,255,126,0.15)" } : { background: "transparent" }}>
                 {ex.tag}
               </button>
             ))}
           </div>
 
-          <div className="max-w-lg mx-auto relative" style={{ minHeight: 260 }}>
+          <div className="max-w-lg mx-auto relative" style={{ minHeight: 280 }}>
             {EXAMPLES.map((ex, i) => (
               <div key={i}
                 className={`light-card rounded-2xl p-8 transition-all duration-300 ${i === activeTab ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"}`}>
@@ -328,13 +339,13 @@ export default function Index() {
                   <div className={`w-1.5 h-1.5 rounded-full ${ex.dot}`} />
                   {ex.tag}
                 </div>
-                <h3 className="font-display text-xl font-bold mb-4 text-gray-900">{ex.title}</h3>
-                <div className="rounded-xl p-4 mb-4 bg-gray-50 border border-gray-100">
-                  <p className="text-gray-700 text-sm leading-relaxed">{ex.message}</p>
+                <h3 className="font-display text-xl font-bold mb-4 text-white">{ex.title}</h3>
+                <div className="rounded-xl p-4 mb-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                  <p className="text-gray-300 text-sm leading-relaxed">{ex.message}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="Clock" size={13} className="text-gray-400" />
-                  <span className="text-xs text-gray-400">Отправлено: {ex.time}</span>
+                  <Icon name="Clock" size={13} className="text-gray-500" />
+                  <span className="text-xs text-gray-500">Отправлено: {ex.time}</span>
                 </div>
               </div>
             ))}
@@ -343,55 +354,54 @@ export default function Index() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="py-24 px-6 bg-gray-50">
+      <section id="pricing" className="py-24 px-6" style={{ backgroundColor: "var(--dark-card2)" }}>
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-green-600 uppercase block mb-3">Тарифы</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900">
-              ПРОСТЫЕ <span className="brand-text">ЦЕНЫ</span>
+            <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase block mb-3">Тарифы</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+              ПРОСТЫЕ <span className="neon-text">ЦЕНЫ</span>
             </h2>
-            <p className="text-gray-500 mt-4">Выберите подходящий план. Первые 14 дней — бесплатно.</p>
+            <p className="text-gray-400 mt-4">Выберите подходящий план. Первые 14 дней — бесплатно.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {PLANS.map((plan, i) => (
               <div key={i}
-                className={`relative rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 ${
-                  plan.accent
-                    ? "bg-green-600 text-white shadow-2xl shadow-green-200"
-                    : "light-card"
-                }`}>
+                className={`relative rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 ${plan.accent ? "" : "light-card"}`}
+                style={plan.accent ? {
+                  background: "var(--dark-card)",
+                  border: "2px solid rgba(57,255,126,0.4)",
+                  boxShadow: "0 0 60px rgba(57,255,126,0.12)"
+                } : {}}>
                 {plan.accent && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow">
+                    <span className="brand-btn px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap">
                       Популярный
                     </span>
                   </div>
                 )}
                 <div className="mb-6">
-                  <h3 className={`font-display text-2xl font-bold mb-1 ${plan.accent ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <p className={plan.accent ? "text-green-100 text-sm" : "text-gray-400 text-sm"}>{plan.desc}</p>
+                  <h3 className="font-display text-2xl font-bold mb-1 text-white">{plan.name}</h3>
+                  <p className="text-gray-400 text-sm">{plan.desc}</p>
                 </div>
                 <div className="mb-8">
-                  <span className={`font-display text-5xl font-bold ${plan.accent ? "text-white" : "text-gray-900"}`}>{plan.price} ₽</span>
-                  <span className={`text-sm ml-1 ${plan.accent ? "text-green-200" : "text-gray-400"}`}>{plan.period}</span>
+                  <span className={`font-display text-5xl font-bold ${plan.accent ? "neon-text" : "text-white"}`}>{plan.price} ₽</span>
+                  <span className="text-gray-400 text-sm ml-1">{plan.period}</span>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {plan.features.map((f, fi) => (
                     <li key={fi} className="flex items-center gap-3 text-sm">
-                      <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${plan.accent ? "bg-green-500" : "bg-green-100"}`}>
-                        <Icon name="Check" size={12} className={plan.accent ? "text-white" : "text-green-600"} />
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ background: "rgba(57,255,126,0.15)", border: "1px solid rgba(57,255,126,0.3)" }}>
+                        <Icon name="Check" size={11} className="text-emerald-400" />
                       </div>
-                      <span className={plan.accent ? "text-green-50" : "text-gray-600"}>{f}</span>
+                      <span className="text-gray-300">{f}</span>
                     </li>
                   ))}
                 </ul>
                 <a href="#contacts"
-                  className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-all duration-200 block ${
-                    plan.accent
-                      ? "bg-white text-green-700 hover:bg-green-50"
-                      : "brand-btn"
-                  }`}>
+                  className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-all duration-200 block ${plan.accent ? "brand-btn" : ""}`}
+                  style={!plan.accent ? { border: "1px solid rgba(255,255,255,0.15)", color: "white" } : {}}>
                   {plan.cta}
                 </a>
               </div>
@@ -401,14 +411,14 @@ export default function Index() {
       </section>
 
       {/* CONTACTS */}
-      <section id="contacts" className="py-24 px-6 bg-white">
+      <section id="contacts" className="py-24 px-6 grid-bg" style={{ backgroundColor: "var(--dark-bg)" }}>
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-green-600 uppercase block mb-3">Контакты</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900">
-              НАЧНЁМ <span className="brand-text">ВМЕСТЕ</span>
+            <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase block mb-3">Контакты</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+              НАЧНЁМ <span className="neon-text">ВМЕСТЕ</span>
             </h2>
-            <p className="text-gray-500 mt-4">Оставьте заявку — ответим в течение 15 минут</p>
+            <p className="text-gray-400 mt-4">Оставьте заявку — ответим в течение 15 минут</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -467,42 +477,46 @@ export default function Index() {
             <div className="light-card rounded-2xl p-8">
               {sent ? (
                 <div className="text-center py-8">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-100 border-2 border-green-300">
-                    <Icon name="Check" size={30} className="text-green-600" />
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                    style={{ background: "rgba(57,255,126,0.15)", border: "2px solid rgba(57,255,126,0.5)" }}>
+                    <Icon name="Check" size={30} className="text-emerald-400" />
                   </div>
-                  <h3 className="font-display text-2xl font-bold mb-2 text-gray-900">Заявка отправлена!</h3>
-                  <p className="text-gray-500">Свяжемся с вами в ближайшие 15 минут</p>
+                  <h3 className="font-display text-2xl font-bold mb-2 text-white">Заявка отправлена!</h3>
+                  <p className="text-gray-400">Свяжемся с вами в ближайшие 15 минут</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Ваше имя</label>
+                    <label className="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wide">Ваше имя</label>
                     <input
                       type="text"
                       placeholder="Иван Петров"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 border border-gray-200 focus:border-green-400 bg-gray-50 text-gray-900 placeholder-gray-400"
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white" }}
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Телефон</label>
+                    <label className="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wide">Телефон</label>
                     <input
                       type="tel"
                       placeholder="+7 (___) ___-__-__"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 border border-gray-200 focus:border-green-400 bg-gray-50 text-gray-900 placeholder-gray-400"
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white" }}
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Комментарий</label>
+                    <label className="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wide">Комментарий</label>
                     <textarea
-                      placeholder="Расскажите о ваших объектах..."
+                      placeholder="Сколько у вас авто? Как сдаёте — посуточно или помесячно?"
                       rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 resize-none border border-gray-200 focus:border-green-400 bg-gray-50 text-gray-900 placeholder-gray-400"
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 resize-none"
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white" }}
                     />
                   </div>
                   <button type="submit" className="brand-btn w-full py-4 rounded-xl text-sm font-bold">
@@ -516,18 +530,18 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8 px-6 bg-gray-50 border-t border-gray-100">
+      <footer className="py-8 px-6" style={{ borderTop: "1px solid rgba(57,255,126,0.08)", backgroundColor: "var(--dark-card)" }}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <img src={LOGO_IMAGE} alt="RentCarBot logo" className="w-7 h-7 rounded-lg object-cover border border-green-200" />
-            <span className="font-display font-bold tracking-wide text-gray-900">
-              RentCar<span className="brand-text">Bot</span>
+            <img src={LOGO_IMAGE} alt="RentCarBot logo" className="w-7 h-7 rounded-lg object-cover" style={{ border: "1px solid rgba(57,255,126,0.3)" }} />
+            <span className="font-display font-bold tracking-wide text-white">
+              RentCar<span className="neon-text">Bot</span>
             </span>
           </div>
-          <p className="text-gray-400 text-sm">© 2026 RentCarBot. Все права защищены.</p>
+          <p className="text-gray-600 text-sm">© 2026 RentCarBot. Все права защищены.</p>
           <div className="flex gap-6">
             {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="text-gray-400 hover:text-gray-700 text-sm transition-colors">
+              <a key={l.href} href={l.href} className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
                 {l.label}
               </a>
             ))}
