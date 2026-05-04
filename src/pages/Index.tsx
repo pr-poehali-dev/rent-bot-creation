@@ -175,7 +175,7 @@ export default function Index() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 animate-fade-up"
               style={{ background: "rgba(57,255,126,0.1)", border: "1px solid rgba(57,255,126,0.2)" }}>
               <div className="w-2 h-2 rounded-full animate-pulse-neon" style={{ background: "var(--neon-green)" }} />
-              <span className="text-xs font-semibold tracking-widest text-emerald-400 uppercase">Telegram-бот для аренды</span>
+              <span className="text-xs font-semibold tracking-widest text-emerald-400 uppercase">Бот для управления арендой</span>
             </div>
 
             <h1 className="font-display text-5xl md:text-6xl xl:text-7xl font-bold leading-none mb-6 animate-fade-up-delay-1">
@@ -190,12 +190,16 @@ export default function Index() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
-              <a href="#contacts" className="neon-btn px-8 py-4 rounded-xl text-base font-bold text-center">
-                Начать бесплатно →
+              <a href="https://t.me/rentbot" target="_blank" rel="noopener noreferrer"
+                className="neon-btn px-7 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.316l-2.95-.924c-.641-.204-.654-.641.136-.953l11.52-4.44c.535-.194 1.003.13.376.249z"/></svg>
+                Telegram-бот
               </a>
-              <a href="#examples" className="px-8 py-4 rounded-xl text-base font-semibold text-center transition-all duration-200 hover:bg-white/5"
-                style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.8)" }}>
-                Смотреть примеры
+              <a href="https://max.ru/rentbot" target="_blank" rel="noopener noreferrer"
+                className="px-7 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ background: "linear-gradient(135deg, #ff4f7b, #c026d3)", color: "#fff", boxShadow: "0 4px 24px rgba(255,79,123,0.35)" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7h-2.25v5.25h-1.5V9H10.5V7.5h6V9zm-7.5 0H7.5v7.5H9V9z"/></svg>
+                MAX-бот
               </a>
             </div>
 
@@ -367,23 +371,59 @@ export default function Index() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div className="space-y-6">
-              {[
-                { icon: "MessageSquare", title: "Telegram", value: "@rentbot_support", color: "text-blue-400" },
-                { icon: "Phone", title: "Телефон", value: "+7 (800) 123-45-67", color: "text-emerald-400" },
-                { icon: "Mail", title: "Email", value: "hello@rentbot.ru", color: "text-purple-400" },
-              ].map((c, i) => (
-                <div key={i} className="glass-card rounded-xl p-5 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(57,255,126,0.08)", border: "1px solid rgba(57,255,126,0.15)" }}>
-                    <Icon name={c.icon} fallback="Circle" size={20} className={c.color} />
-                  </div>
-                  <div>
-                    <div className="text-xs text-gray-500 font-medium">{c.title}</div>
-                    <div className="text-white font-semibold mt-0.5">{c.value}</div>
-                  </div>
+            <div className="space-y-4">
+              {/* Telegram */}
+              <a href="https://t.me/rentbot_support" target="_blank" rel="noopener noreferrer"
+                className="glass-card rounded-xl p-5 flex items-center gap-4 hover:border-blue-400/40 transition-all duration-200 block">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#60a5fa"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.316l-2.95-.924c-.641-.204-.654-.641.136-.953l11.52-4.44c.535-.194 1.003.13.376.249z"/></svg>
                 </div>
-              ))}
+                <div>
+                  <div className="text-xs text-gray-500 font-medium">Telegram-бот</div>
+                  <div className="text-white font-semibold mt-0.5">@rentbot_support</div>
+                </div>
+                <Icon name="ArrowRight" size={16} className="text-gray-600 ml-auto" />
+              </a>
+
+              {/* MAX */}
+              <a href="https://max.ru/rentbot" target="_blank" rel="noopener noreferrer"
+                className="glass-card rounded-xl p-5 flex items-center gap-4 transition-all duration-200 block"
+                style={{ borderColor: "rgba(192,38,211,0.2)" }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(192,38,211,0.12)", border: "1px solid rgba(192,38,211,0.25)" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#d946ef"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7h-2.25v5.25h-1.5V9H10.5V7.5h6V9zm-7.5 0H7.5v7.5H9V9z"/></svg>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 font-medium">MAX-бот <span className="text-fuchsia-500 text-xs">(российский мессенджер)</span></div>
+                  <div className="text-white font-semibold mt-0.5">@rentbot_max</div>
+                </div>
+                <Icon name="ArrowRight" size={16} className="text-gray-600 ml-auto" />
+              </a>
+
+              {/* Phone */}
+              <div className="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(57,255,126,0.08)", border: "1px solid rgba(57,255,126,0.15)" }}>
+                  <Icon name="Phone" fallback="Circle" size={20} className="text-emerald-400" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 font-medium">Телефон</div>
+                  <div className="text-white font-semibold mt-0.5">+7 (800) 123-45-67</div>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="glass-card rounded-xl p-5 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                  <Icon name="Mail" fallback="Circle" size={20} className="text-purple-400" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 font-medium">Email</div>
+                  <div className="text-white font-semibold mt-0.5">hello@rentbot.ru</div>
+                </div>
+              </div>
             </div>
 
             <div className="glass-card rounded-2xl p-8">
