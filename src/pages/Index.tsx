@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMAGE = "https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/24c72f00-d8df-40bc-9641-b48067dd6582.jpg";
+const HERO_IMAGE = "https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/715f1726-02a6-4349-80e5-98478103e1a4.jpg";
 const LOGO_IMAGE = "https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/deb89c32-44f6-4e0a-be4a-951bc1964dc0.jpg";
 
 const NAV_LINKS = [
@@ -226,18 +226,24 @@ export default function Index() {
               Бот сам контролирует оплаты, напоминает об ОСАГО и ведёт учёт по каждому авто — без вашего участия.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
-              <a href="https://t.me/rentbot" target="_blank" rel="noopener noreferrer"
-                className="brand-btn px-7 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2">
-                <TgIcon />
-                Telegram-бот
-              </a>
-              <a href="https://max.ru/rentbot" target="_blank" rel="noopener noreferrer"
-                className="px-7 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
-                style={{ background: "linear-gradient(135deg, #ff4f7b, #c026d3)", color: "#fff", boxShadow: "0 4px 20px rgba(192,38,211,0.25)" }}>
-                <MaxIcon />
-                MAX-бот
-              </a>
+            <div className="animate-fade-up-delay-3">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">Запустить бота бесплатно</p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href="https://t.me/rentbot" target="_blank" rel="noopener noreferrer"
+                  className="relative px-7 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2 overflow-hidden"
+                  style={{ background: "linear-gradient(135deg, #39ff7e, #00d4ff)", color: "#050d1a", boxShadow: "0 4px 24px rgba(57,255,126,0.35)" }}>
+                  <span className="absolute inset-0 rounded-xl animate-ping-slow" style={{ background: "rgba(57,255,126,0.2)", animationDuration: "2s" }} />
+                  <TgIcon />
+                  <span className="relative">Telegram-бот</span>
+                </a>
+                <a href="https://max.ru/rentbot" target="_blank" rel="noopener noreferrer"
+                  className="relative px-7 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2 overflow-hidden transition-all duration-200 hover:-translate-y-0.5"
+                  style={{ background: "linear-gradient(135deg, #e8445a, #a21caf)", color: "#fff", boxShadow: "0 4px 20px rgba(168,28,207,0.3)" }}>
+                  <span className="absolute inset-0 rounded-xl animate-ping-slow" style={{ background: "rgba(232,68,90,0.2)", animationDuration: "2.4s" }} />
+                  <MaxIcon />
+                  <span className="relative">МАКС-бот</span>
+                </a>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 animate-fade-up-delay-4">
@@ -250,9 +256,9 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="relative animate-float hidden lg:block">
-            <div className="relative rounded-2xl overflow-hidden border-2 shadow-2xl" style={{ borderColor: "rgba(57,255,126,0.25)", boxShadow: "0 0 60px rgba(57,255,126,0.1)" }}>
-              <img src={HERO_IMAGE} alt="RentCarBot интерфейс" className="w-full h-auto" />
+          <div className="relative hidden lg:block">
+            <div className="relative rounded-2xl overflow-hidden border-2 shadow-2xl" style={{ borderColor: "rgba(57,255,126,0.25)", boxShadow: "0 0 60px rgba(57,255,126,0.15)" }}>
+              <img src={HERO_IMAGE} alt="Автопарк под управлением" className="w-full h-auto object-cover" style={{ minHeight: 420 }} />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,13,26,0.4), transparent)" }} />
             </div>
 
@@ -451,7 +457,7 @@ export default function Index() {
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs text-gray-500 font-medium mb-0.5">MAX-бот <span className="text-fuchsia-400">· RU мессенджер</span></div>
+                  <div className="text-xs text-gray-500 font-medium mb-0.5">МАКС-бот <span className="text-fuchsia-400">· RU мессенджер</span></div>
                   <div className="text-white font-semibold">@rentbot_max</div>
                 </div>
                 <Icon name="ArrowUpRight" size={18} className="text-gray-600 group-hover:text-emerald-400 transition-colors flex-shrink-0" />
