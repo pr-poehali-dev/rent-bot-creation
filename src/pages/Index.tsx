@@ -54,6 +54,7 @@ const PLANS = [
     price: "990",
     period: "/ мес",
     desc: "Для 1–5 автомобилей",
+    hint: "Окупается за счёт одной предотвращённой просрочки",
     features: [
       "До 5 автомобилей",
       "Напоминания об оплате (7/3/1 день)",
@@ -137,10 +138,38 @@ export default function Index() {
   const [avgLoss, setAvgLoss] = useState(2000);
 
   const calc = useMemo(() => {
-    const totalLoss = carsCount * avgLoss;
-    const tariffCost = carsCount <= 5 ? 990 : carsCount <= 30 ? 2490 : 5990;
-    const saved = Math.round(totalLoss * 0.8 - tariffCost);
-    return { totalLoss, tariffCost, saved: saved > 0 ? saved : 0 };
+    const PERCENT_DEBT_DEFAULT = 0.30;
+    const BOT_EFFICIENCY = 0.80;
+    const lossWithoutBot = Math.round(carsCount * avgLoss * PERCENT_DEBT_DEFAULT);
+    const lossPrevented = Math.round(lossWithoutBot * BOT_EFFICIENCY);
+
+    let planName = "Старт";
+    let planPrice = 990;
+    if (carsCount > 30) { planName = "Про"; planPrice = 5990; }
+    else if (carsCount > 5) { planName = "Бизнес"; planPrice = 2490; }
+
+    const savingsMonth = lossPrevented - planPrice;
+    const savingsYear = savingsMonth * 12;
+    const isLargeFleet = carsCount >= 30;
+    const isNegative = savingsMonth < 0;
+
+    let payback = "менее 1 дня";
+    if (savingsMonth > 0) {
+      const days = Math.max(1, Math.ceil((planPrice / lossPrevented) * 30));
+      payback = days <= 1 ? "менее 1 дня" : `${days} ${days < 5 ? "дня" : "дней"}`;
+    }
+
+    return {
+      lossWithoutBot,
+      lossPrevented,
+      planName,
+      planPrice,
+      savingsMonth,
+      savingsYear,
+      isLargeFleet,
+      isNegative,
+      payback,
+    };
   }, [carsCount, avgLoss]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -494,25 +523,25 @@ export default function Index() {
             <div className="space-y-6">
               <div>
                 <label className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-semibold text-gray-300">Сколько машин в автопарке?</span>
-                  <span className="font-display text-2xl font-bold neon-text">{carsCount}</span>
+                  <span className="text-sm font-semibold text-gray-300">Количество машин в парке</span>
+                  <span className="font-display text-2xl font-bold neon-text">{carsCount}{carsCount >= 100 ? "+" : ""}</span>
                 </label>
                 <input
                   type="range"
                   min={1}
-                  max={50}
+                  max={100}
                   value={carsCount}
                   onChange={(e) => setCarsCount(Number(e.target.value))}
                   className="w-full accent-emerald-400"
                 />
                 <div className="flex justify-between text-xs text-gray-500 mt-1">
-                  <span>1</span><span>25</span><span>50</span>
+                  <span>1</span><span>10</span><span>30</span><span>100+</span>
                 </div>
               </div>
 
               <div>
                 <label className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-semibold text-gray-300">Средняя просрочка на 1 авто в месяц</span>
+                  <span className="text-sm font-semibold text-gray-300">Средняя просрочка на одной машине в месяц</span>
                   <span className="font-display text-2xl font-bold neon-text">{avgLoss.toLocaleString("ru")} ₽</span>
                 </label>
                 <input
@@ -531,26 +560,67 @@ export default function Index() {
 
               <div className="rounded-2xl p-6 space-y-3" style={{ background: "rgba(57,255,126,0.05)", border: "1px solid rgba(57,255,126,0.2)" }}>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Ваши потери без бота</span>
-                  <span className="text-red-400 font-semibold">−{calc.totalLoss.toLocaleString("ru")} ₽/мес</span>
+                  <span className="text-gray-400">📉 Ваши потери без бота</span>
+                  <span className="text-red-400 font-semibold">−{calc.lossWithoutBot.toLocaleString("ru")} ₽/мес</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Стоимость подходящего тарифа</span>
-                  <span className="text-gray-300">{calc.tariffCost.toLocaleString("ru")} ₽/мес</span>
+                  <span className="text-gray-400">💰 Стоимость тарифа «{calc.planName}»</span>
+                  <span className="text-gray-300">{calc.planPrice.toLocaleString("ru")} ₽/мес</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Бот предотвращает 80% просрочек</span>
-                  <span className="text-gray-300">≈</span>
+                  <span className="text-gray-400">🛡️ Бот предотвращает 80% потерь</span>
+                  <span className="text-gray-300">−{calc.lossPrevented.toLocaleString("ru")} ₽</span>
                 </div>
-                <div className="border-t pt-3 flex justify-between items-center" style={{ borderColor: "rgba(57,255,126,0.2)" }}>
-                  <span className="text-gray-200 font-semibold">Экономия</span>
-                  <span className="font-display text-2xl font-bold neon-text">+{calc.saved.toLocaleString("ru")} ₽/мес</span>
+
+                <div className="border-t pt-4 space-y-2" style={{ borderColor: "rgba(57,255,126,0.2)" }}>
+                  {calc.isNegative ? (
+                    <>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-200 font-semibold">Экономия в месяц</span>
+                        <span className="font-display text-2xl font-bold text-yellow-400">{calc.savingsMonth.toLocaleString("ru")} ₽</span>
+                      </div>
+                      <p className="text-xs text-gray-400 leading-relaxed pt-2">
+                        Пока бот не окупается на вашем парке с такими просрочками. Но мы всё равно даём <b className="text-emerald-400">14 дней бесплатно</b> — вы ничего не теряете. Проверьте сами, вдруг просрочки больше, чем кажется.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-200 font-semibold">✅ Экономия в месяц</span>
+                        <span className="font-display text-2xl font-bold neon-text">+{calc.savingsMonth.toLocaleString("ru")} ₽</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">В год</span>
+                        <span className="text-emerald-400 font-semibold">+{calc.savingsYear.toLocaleString("ru")} ₽</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Окупаемость</span>
+                        <span className="text-gray-300">{calc.payback}</span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div className="border-t pt-3 flex items-center justify-between text-sm" style={{ borderColor: "rgba(57,255,126,0.2)" }}>
+                  <span className="text-gray-400">➕ Рекомендуем тариф</span>
+                  <span className="font-semibold text-white">{calc.planName}</span>
                 </div>
               </div>
 
-              <a href="#pricing" className="brand-btn block w-full py-4 rounded-xl text-center text-base font-bold">
-                Выбрать тариф →
-              </a>
+              {calc.isLargeFleet ? (
+                <div className="space-y-3">
+                  <div className="rounded-xl p-4 text-sm text-gray-300 leading-relaxed" style={{ background: "rgba(79,142,255,0.08)", border: "1px solid rgba(79,142,255,0.25)" }}>
+                    Для парков от 30 машин у нас <b className="text-white">специальные условия</b>. Оставьте заявку — подготовим предложение за 1 час.
+                  </div>
+                  <a href="#consultation" className="brand-btn block w-full py-4 rounded-xl text-center text-base font-bold">
+                    Получить персональное предложение →
+                  </a>
+                </div>
+              ) : (
+                <a href="#contacts" className="brand-btn block w-full py-4 rounded-xl text-center text-base font-bold">
+                  {calc.isNegative ? "Всё равно попробовать 14 дней" : "Запустить бота на 14 дней бесплатно"}
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -586,6 +656,9 @@ export default function Index() {
                 <div className="mb-6">
                   <h3 className="font-display text-2xl font-bold mb-1 text-white">{plan.name}</h3>
                   <p className="text-gray-400 text-sm">{plan.desc}</p>
+                  {plan.hint && (
+                    <p className="text-xs text-emerald-400 mt-2 leading-snug">💡 {plan.hint}</p>
+                  )}
                 </div>
                 <div className="mb-8">
                   <span className={`font-display text-5xl font-bold ${plan.accent ? "neon-text" : "text-white"}`}>{plan.price} ₽</span>
@@ -610,11 +683,19 @@ export default function Index() {
               </div>
             ))}
           </div>
+
+          <div className="text-center mt-10">
+            <p className="inline-flex items-center gap-2 text-sm text-gray-300 px-5 py-3 rounded-full"
+              style={{ background: "rgba(57,255,126,0.07)", border: "1px solid rgba(57,255,126,0.2)" }}>
+              <Icon name="ShieldCheck" fallback="Check" size={16} className="text-emerald-400" />
+              Все тарифы включают <b className="text-white">14 дней бесплатно</b>. Карту не требуем.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* CONSULTATION */}
-      <section className="py-24 px-6 grid-bg" style={{ backgroundColor: "var(--dark-bg)" }}>
+      <section id="consultation" className="py-24 px-6 grid-bg" style={{ backgroundColor: "var(--dark-bg)" }}>
         <div className="container mx-auto max-w-3xl">
           <div className="light-card rounded-3xl p-8 md:p-12">
             <div className="text-center mb-8">
