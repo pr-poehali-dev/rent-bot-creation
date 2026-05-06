@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import Icon from "@/components/ui/icon";
+import TelegramDemo from "@/components/TelegramDemo";
 import func2url from "../../backend/func2url.json";
 
 const HERO_IMAGE = "https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/715f1726-02a6-4349-80e5-98478103e1a4.jpg";
@@ -475,14 +476,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden"
-            style={{ border: "2px solid rgba(57,255,126,0.25)", boxShadow: "0 0 60px rgba(57,255,126,0.15)" }}>
-            <img
-              src="https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/661fc3fb-f816-4554-96fe-d3b21fba7c59.jpg"
-              alt="Демо диалога RentCarBot в Telegram"
-              className="w-full h-auto block"
-            />
-          </div>
+          <TelegramDemo />
 
           <div className="flex justify-center mt-8">
             <a href="#contacts" className="brand-btn inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold">
