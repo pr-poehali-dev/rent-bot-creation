@@ -135,7 +135,7 @@ export default function Index() {
   const [consultSending, setConsultSending] = useState(false);
 
   const [carsCount, setCarsCount] = useState(5);
-  const [avgLoss, setAvgLoss] = useState(2000);
+  const [avgLoss, setAvgLoss] = useState(5000);
 
   const calc = useMemo(() => {
     const PERCENT_DEBT_DEFAULT = 0.30;
