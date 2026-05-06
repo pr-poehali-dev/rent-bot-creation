@@ -561,27 +561,33 @@ export default function Index() {
               <div className="rounded-2xl p-6 space-y-3" style={{ background: "rgba(57,255,126,0.05)", border: "1px solid rgba(57,255,126,0.2)" }}>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-400">📉 Ваши потери без бота</span>
-                  <span className="text-red-400 font-semibold">−{calc.lossWithoutBot.toLocaleString("ru")} ₽/мес</span>
+                  <span className="text-red-400 font-semibold">{calc.lossWithoutBot.toLocaleString("ru")} ₽/мес</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-400">🛡️ Бот предотвращает (80%)</span>
+                  <span className="text-emerald-400 font-semibold">{calc.lossPrevented.toLocaleString("ru")} ₽/мес</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-400">💰 Стоимость тарифа «{calc.planName}»</span>
                   <span className="text-gray-300">{calc.planPrice.toLocaleString("ru")} ₽/мес</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">🛡️ Бот предотвращает 80% потерь</span>
-                  <span className="text-gray-300">−{calc.lossPrevented.toLocaleString("ru")} ₽</span>
                 </div>
 
                 <div className="border-t pt-4 space-y-2" style={{ borderColor: "rgba(57,255,126,0.2)" }}>
                   {calc.isNegative ? (
                     <>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-200 font-semibold">Экономия в месяц</span>
+                        <span className="text-gray-200 font-semibold">😌 Экономия в месяц</span>
                         <span className="font-display text-2xl font-bold text-yellow-400">{calc.savingsMonth.toLocaleString("ru")} ₽</span>
                       </div>
-                      <p className="text-xs text-gray-400 leading-relaxed pt-2">
-                        Пока бот не окупается на вашем парке с такими просрочками. Но мы всё равно даём <b className="text-emerald-400">14 дней бесплатно</b> — вы ничего не теряете. Проверьте сами, вдруг просрочки больше, чем кажется.
-                      </p>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Окупаемость</span>
+                        <span className="text-yellow-400">Не окупается</span>
+                      </div>
+                      <div className="rounded-xl p-3 mt-3" style={{ background: "rgba(255,200,80,0.07)", border: "1px solid rgba(255,200,80,0.2)" }}>
+                        <p className="text-xs text-gray-300 leading-relaxed">
+                          <b className="text-yellow-400">💡 Наша рекомендация:</b> при таком парке и низких просрочках бот может не окупаться. Но вы можете протестировать его <b className="text-emerald-400">14 дней бесплатно</b> — часто скрытых просрочек больше, чем кажется.
+                        </p>
+                      </div>
                     </>
                   ) : (
                     <>
