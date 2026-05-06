@@ -240,19 +240,19 @@ export default function Index() {
             <div className="animate-fade-up-delay-3 mb-6">
               <div className="flex flex-col sm:flex-row gap-3">
                 <a href="#contacts"
-                  className="relative px-7 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2 overflow-hidden"
+                  className="relative px-6 py-3.5 rounded-xl text-sm font-bold text-center flex items-center justify-center gap-2 overflow-hidden"
                   style={{ background: "linear-gradient(135deg, #39ff7e, #00d4ff)", color: "#050d1a", boxShadow: "0 4px 24px rgba(57,255,126,0.35)" }}>
                   <span className="absolute inset-0 rounded-xl animate-ping-slow" style={{ background: "rgba(57,255,126,0.2)" }} />
                   <span className="relative flex items-center gap-2">
                     <TgIcon />
-                    Запустить бота · 14 дней бесплатно
+                    Запустить бота
                   </span>
                 </a>
                 <a href="#video"
-                  className="px-6 py-4 rounded-xl text-base font-bold text-center flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
+                  className="px-5 py-3.5 rounded-xl text-sm font-bold text-center flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", color: "#fff" }}>
-                  <Icon name="Play" size={18} className="text-emerald-400" />
-                  Смотреть демо · 2 мин
+                  <Icon name="Play" size={16} className="text-emerald-400" />
+                  Смотреть демо
                 </a>
               </div>
             </div>
@@ -362,13 +362,16 @@ export default function Index() {
           </div>
         </div>
 
-        {/* STATS */}
-        <div className="container mx-auto px-6 mt-16 relative">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 animate-fade-up-delay-4 max-w-3xl">
-            {STATS.map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="font-display text-2xl font-bold stat-accent">{s.value}</div>
-                <div className="text-xs text-gray-400 mt-1">{s.label}</div>
+      </section>
+
+      {/* STATS — отдельная секция-разделитель */}
+      <section className="py-16 px-6 relative" style={{ backgroundColor: "var(--dark-card)", borderTop: "1px solid rgba(57,255,126,0.08)", borderBottom: "1px solid rgba(57,255,126,0.08)" }}>
+        <div className="container mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {STATS.map((s, i) => (
+              <div key={s.label} className={`text-center ${i > 0 ? "md:border-l" : ""}`} style={i > 0 ? { borderColor: "rgba(255,255,255,0.06)" } : {}}>
+                <div className="font-display text-3xl md:text-4xl font-bold stat-accent">{s.value}</div>
+                <div className="text-xs md:text-sm text-gray-400 mt-2">{s.label}</div>
               </div>
             ))}
           </div>
