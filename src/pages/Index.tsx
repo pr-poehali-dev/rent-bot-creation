@@ -453,30 +453,42 @@ export default function Index() {
       <section id="video" className="py-24 px-6 grid-bg" style={{ backgroundColor: "var(--dark-bg)" }}>
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-10">
-            <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase block mb-3">Видео-демо</span>
+            <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase block mb-3">Демо</span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
               КАК ЭТО <span className="neon-text">РАБОТАЕТ</span>
             </h2>
-            <p className="text-gray-400 mt-4">2 минуты — от хаоса в Excel до автоматического бота</p>
+            <p className="text-gray-400 mt-4">Арендатору приходит напоминание → он оплачивает → вам приходит отчёт</p>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden cursor-pointer group"
+          <div className="grid md:grid-cols-3 gap-3 mb-8">
+            <div className="rounded-xl p-4 flex items-center gap-3" style={{ background: "rgba(57,255,126,0.06)", border: "1px solid rgba(57,255,126,0.2)" }}>
+              <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-slate-900" style={{ background: "#39ff7e" }}>1</div>
+              <span className="text-sm text-gray-200">Бот пишет арендатору в Telegram</span>
+            </div>
+            <div className="rounded-xl p-4 flex items-center gap-3" style={{ background: "rgba(57,255,126,0.06)", border: "1px solid rgba(57,255,126,0.2)" }}>
+              <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-slate-900" style={{ background: "#39ff7e" }}>2</div>
+              <span className="text-sm text-gray-200">Арендатор оплачивает по ссылке</span>
+            </div>
+            <div className="rounded-xl p-4 flex items-center gap-3" style={{ background: "rgba(57,255,126,0.06)", border: "1px solid rgba(57,255,126,0.2)" }}>
+              <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-slate-900" style={{ background: "#39ff7e" }}>3</div>
+              <span className="text-sm text-gray-200">Вам падает отчёт об оплате</span>
+            </div>
+          </div>
+
+          <div className="relative rounded-2xl overflow-hidden"
             style={{ border: "2px solid rgba(57,255,126,0.25)", boxShadow: "0 0 60px rgba(57,255,126,0.15)" }}>
-            <img src={VIDEO_PREVIEW} alt="Видео-демо RentCarBot" className="w-full h-auto" />
-            <div className="absolute inset-0 flex items-center justify-center" style={{ background: "linear-gradient(180deg, rgba(5,13,26,0.3), rgba(5,13,26,0.6))" }}>
-              <div className="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                style={{ background: "linear-gradient(135deg, #39ff7e, #00d4ff)", boxShadow: "0 8px 32px rgba(57,255,126,0.5)" }}>
-                <Icon name="Play" size={32} className="text-slate-900 ml-1" />
-              </div>
-            </div>
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-              <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "rgba(0,0,0,0.6)", color: "#fff" }}>
-                Скоро
-              </span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "rgba(0,0,0,0.6)", color: "#fff" }}>
-                2:00
-              </span>
-            </div>
+            <img
+              src="https://cdn.poehali.dev/projects/d22552c6-9dd8-4aef-a6c6-1d2a7d84c9e8/files/661fc3fb-f816-4554-96fe-d3b21fba7c59.jpg"
+              alt="Демо диалога RentCarBot в Telegram"
+              className="w-full h-auto block"
+            />
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <a href="#contacts" className="brand-btn inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold">
+              <Icon name="Send" size={20} />
+              Попробовать бесплатно
+            </a>
           </div>
         </div>
       </section>
